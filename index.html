@@ -26,6 +26,8 @@
         color: #333;
         animation: fadeInScale 0.8s forwards; 
         margin: 10px; 
+        /* Tăng min-width để đảm bảo container luôn đủ rộng cho tiêu đề */
+        min-width: 280px; 
     }
 
     /* ĐIỀU CHỈNH QUAN TRỌNG: Ngăn tiêu đề xuống dòng */
@@ -34,8 +36,11 @@
         font-size: 2em;
         margin-bottom: 25px;
         text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-        /* Thuộc tính này giữ nội dung trên một dòng */
+        /* **Lệnh mới** để giải quyết vấn đề xuống dòng */
         white-space: nowrap; 
+        /* **Lệnh mới** để đảm bảo không bị tràn và cắt chữ */
+        overflow: hidden; 
+        text-overflow: clip;
     }
 
     .wish-text {
@@ -57,12 +62,14 @@
     /* MEDIA QUERY - Tối Ưu cho Điện Thoại (Màn hình dưới 600px) */
     @media (max-width: 600px) {
         .wish-box {
-            padding: 20px 10px; /* Giảm padding ngang cho màn hình nhỏ */
+            padding: 20px 10px; 
             max-width: 95%; 
             width: auto; 
+            min-width: 90%; /* Bắt buộc box chiếm 90% màn hình để không bị quá hẹp */
         }
         .wish-box h3 {
-            font-size: 1.2em; /* Giảm kích thước chữ tiêu đề để phù hợp hơn */
+            /* SỬ DỤNG VW: Co giãn font-size theo chiều rộng màn hình */
+            font-size: 5.5vw; 
         }
         .wish-text {
             font-size: 1em; 
@@ -89,18 +96,12 @@
         "Sống đầy đam mê, làm điều mình thích, và biến mọi áp lực thành động lực! 💪",
     ];
 
-    /**
-     * Hiển thị hộp lời chúc với một lời chúc ngẫu nhiên.
-     */
     function showRandomWish() {
         const randomWishElement = document.getElementById('randomWish');
-
-        // 1. Chọn và Cập nhật nội dung
         const randomIndex = Math.floor(Math.random() * funnyInspirationalWishes.length);
         const randomWish = funnyInspirationalWishes[randomIndex];
         randomWishElement.textContent = randomWish;
     }
 
-    // Tự động hiển thị hộp quà khi trang được tải
     window.onload = showRandomWish;
 </script>
