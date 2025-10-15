@@ -1,0 +1,102 @@
+<style>
+    /* CSS cho Hộp Lời Chúc - Tinh tế và không dùng hình ảnh */
+    .wish-container-20-10 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Nền mờ hơn một chút */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        font-family: 'Arial', sans-serif;
+    }
+    .wish-box {
+        background: linear-gradient(to top right, #FFC0CB, #ADD8E6); /* Hồng và Xanh dương nhạt */
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        max-width: 450px;
+        color: #333;
+        animation: fadeIn 0.8s;
+    }
+    .wish-box h3 {
+        color: #8B0000; /* Đỏ đô */
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .wish-text {
+        font-size: 1.2em;
+        line-height: 1.5;
+        font-style: italic;
+        margin-bottom: 30px;
+        padding: 10px;
+        border: 1px dashed #FF69B4; /* Viền hồng chấm phá */
+        background-color: #FFF;
+        border-radius: 5px;
+    }
+    .close-btn-20-10 {
+        background-color: #FF69B4; /* Hồng dâu */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .close-btn-20-10:hover {
+        background-color: #C71585;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+<div id="wishPopup" class="wish-container-20-10">
+    <div class="wish-box">
+        <h3>💌 LỜI CHÚC BÍ MẬT 20/10 💌</h3>
+        <p class="wish-text" id="randomWish"></p>
+        <button class="close-btn-20-10" onclick="hideWish()">Đã Đọc, Tiếp Tục Đăng Ký Cơm</button>
+    </div>
+
+</div>
+<script>
+    // Danh sách các lời chúc ngắn gọn, súc tích, hài hước và truyền cảm hứng
+    const funnyInspirationalWishes = [
+        "Chúc các chị 20/10 xinh đẹp mặn mà, lụa là thướt tha. Tiền đầy túi, tình đầy tim, bụng đầy mỡ, à nhầm, đầy đồ ăn ngon. ✨",
+		"Gửi ngàn lời yêu thương đến các đồng nghiệp nữ. Chúc các bạn có một ngày 20/10 thật tuyệt vời. 😊",
+        "Phụ nữ không bao giờ già đi, họ chỉ thăng cấp độ quyến rũ và thông thái thôi! Chúc mừng 20/10! 👑",
+		"Phụ nữ là để yêu thương, chiều chuộng và tặng quà! Chúc bạn nhận được cả ba thứ này gấp 10 lần trong hôm nay! 💐",
+        "20/10 sắp đến, chúc cho bạn sẽ có một ngày đáng nhớ bên cạnh những người mình yêu thương!😉",
+		"Sống đầy đam mê, làm điều mình thích, và biến mọi áp lực thành động lực! 💪",
+    ];
+
+    function showRandomWish() {
+        const wishPopup = document.getElementById('wishPopup');
+        const randomWishElement = document.getElementById('randomWish');
+
+        // Chọn ngẫu nhiên một lời chúc
+        const randomWish = funnyInspirationalWishes[Math.floor(Math.random() * funnyInspirationalWishes.length)];
+
+        // Cập nhật nội dung và hiển thị
+        randomWishElement.textContent = randomWish;
+        wishPopup.classList.remove('hidden');
+    }
+
+    function hideWish() {
+        document.getElementById('wishPopup').classList.add('hidden');
+        // Sau khi ẩn, có thể thêm logic hiển thị form đăng ký cơm nếu cần
+    }
+
+    // Tự động hiển thị hộp quà khi trang được tải
+    window.onload = showRandomWish;
+</script>
