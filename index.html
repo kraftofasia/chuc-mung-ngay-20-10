@@ -1,7 +1,6 @@
 <style>
     /* CSS Cơ Bản - Đảm bảo hiển thị Toàn Màn Hình */
     .wish-container-20-10 {
-        /* Đảm bảo toàn màn hình và luôn ở trên cùng */
         position: fixed; 
         top: 0;
         left: 0;
@@ -13,7 +12,6 @@
         align-items: center;
         z-index: 9999; 
         font-family: 'Arial', sans-serif;
-        /* Loại bỏ transition nếu không cần ẩn/hiện mượt mà */
     }
     
     /* CSS Hộp Lời Chúc Mặc Định */
@@ -26,15 +24,20 @@
         max-width: 90%; 
         width: 450px; 
         color: #333;
-        animation: fadeInScale 0.8s forwards; /* Giữ lại hiệu ứng xuất hiện */
+        animation: fadeInScale 0.8s forwards; 
         margin: 10px; 
     }
+
+    /* ĐIỀU CHỈNH QUAN TRỌNG: Ngăn tiêu đề xuống dòng */
     .wish-box h3 {
         color: #8B0000;
         font-size: 2em;
         margin-bottom: 25px;
         text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        /* Thuộc tính này giữ nội dung trên một dòng */
+        white-space: nowrap; 
     }
+
     .wish-text {
         font-size: 1.3em;
         line-height: 1.6;
@@ -50,17 +53,16 @@
         from { opacity: 0; transform: scale(0.8); }
         to { opacity: 1; transform: scale(1); }
     }
-    /* Loại bỏ class .hidden và các quy tắc liên quan vì nó sẽ hiển thị cố định */
 
     /* MEDIA QUERY - Tối Ưu cho Điện Thoại (Màn hình dưới 600px) */
     @media (max-width: 600px) {
         .wish-box {
-            padding: 20px; 
+            padding: 20px 10px; /* Giảm padding ngang cho màn hình nhỏ */
             max-width: 95%; 
             width: auto; 
         }
         .wish-box h3 {
-            font-size: 1.5em; 
+            font-size: 1.2em; /* Giảm kích thước chữ tiêu đề để phù hợp hơn */
         }
         .wish-text {
             font-size: 1em; 
@@ -88,7 +90,7 @@
     ];
 
     /**
-     * Hiển thị hộp lời chúc với một lời chúc ngẫu nhiên (sẽ hiển thị cố định).
+     * Hiển thị hộp lời chúc với một lời chúc ngẫu nhiên.
      */
     function showRandomWish() {
         const randomWishElement = document.getElementById('randomWish');
@@ -97,8 +99,6 @@
         const randomIndex = Math.floor(Math.random() * funnyInspirationalWishes.length);
         const randomWish = funnyInspirationalWishes[randomIndex];
         randomWishElement.textContent = randomWish;
-        
-        // **LƯU Ý:** Không cần dòng mã nào để ẩn nó. Nó sẽ hiển thị mãi mãi.
     }
 
     // Tự động hiển thị hộp quà khi trang được tải
